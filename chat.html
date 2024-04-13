@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+</head>
+<script>
+    function handleFileSelect(event) {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const content = e.target.result;
+            document.getElementById('output').textContent = content;
+        };
+        reader.readAsText(globalchat.txt);
+    }
+</script>
+<body>
+<textarea id="username" name="w3review" rows="4" cols="50">
+    <!--print globalchat.txt chat here!!-->
+</textarea>
+    
+    <br><br>
+    
+    <input type="text" name="message"></input>
+    
+</body>
+</html>
