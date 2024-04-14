@@ -7,28 +7,50 @@
 </head>
 <body>
     <h1>Read File from Server</h1>
-    <label for="fileInput">Enter file path:</label>
-    <input type="text" id="fileInput" placeholder="Enter file path...">
-    <button onclick="readFile()">Read File</button>
+    <button onclick="readFile()">Update chat</button>
     <pre id="fileContent"></pre>
 
     <script>
         function readFile() {
-            const filePath = document.getElementById('fileInput').value;
-            fetch(filePath)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`Error fetching file: ${response.statusText}`);
-                    }
-                    return response.text();
-                })
-                .then(content => {
-                    document.getElementById('fileContent').textContent = content;
-                })
-                .catch(error => {
-                    document.getElementById('fileContent').textContent = `Error: ${error.message}`;
-                });
-        }
+    const filePath = "globalchat"; // Change this to the correct path
+    fetch(filePath)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Error fetching file: ${response.statusText}`);
+            }
+            return response.text();
+        })
+        .then(content => {
+            document.getElementById('fileContent').textContent = content;
+            updateFileContentEverySecond(content);
+        })
+        .catch(error => {
+            document.getElementById('fileContent').textContent = `Error: ${error.message}`;
+        });
+}
+
+function updateFileContentEverySecond(content) {
+    setInterval(() => {
+        const filePath = "globalchat"; // Change this to the correct path
+        fetch(filePath)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Error fetching file: ${response.statusText}`);
+                }
+                return response.text();
+            })
+            .then(content => {
+                document.getElementById('fileContent').textContent = content;
+            })
+            .catch(error => {
+                document.getElementById('fileContent').textContent = `Error: ${error.message}`;
+            });
+    }, 1000);
+}
+window.onload = function() {
+    readFile();
+};
     </script>
 </body>
+
 </html>
