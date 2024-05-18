@@ -1,3 +1,8 @@
 # chat-sync
 
-Chat Sync is a open-source chat platform
+Chat Sync is a open-source chat platform 
+
+# requirements
+
+- latest version of python
+- latest version of flask (pip)
