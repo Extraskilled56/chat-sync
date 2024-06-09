@@ -6,3 +6,4 @@ Chat Sync is a open-source chat platform
 
 - latest version of python
 - latest version of flask (pip)
+- latest version of uwsgi (pip)
