@@ -14,7 +14,7 @@ def clear_chat():
 def main():
     index = open("index.html", "rb")
     return index.read()
-@app.route('/chat', methods=['GET', 'POST'])
+@app.route('/chat/', methods=['GET', 'POST'])
 def chat():
     sendm = open("globalchat.txt", "a")
     if request.method == 'POST':
@@ -23,7 +23,7 @@ def chat():
         sendm = open("globalchat.txt", "a")
         sendm.write("<" + username + ">:" + message + "\n") 
     return open("chat.html", "rb")
-@app.route('/admin', methods=['GET', 'POST'])
+@app.route('/admin/', methods=['GET', 'POST'])
 def login():
     if request.method == "POST":
         username = request.form['username']
@@ -39,10 +39,10 @@ def login():
         return open("admin-login.html", "rb")
 
 
-@app.route('/test', methods=['get'])
+@app.route('/test/', methods=['get'])
 def test():
     return open("test.html", "rb")
-@app.route('/globalchat', methods=['get'])
+@app.route('/globalchat/', methods=['get'])
 def globalchat():
     return open("globalchat.txt", "r")
 @app.route('/chat.html', methods=['GET', 'POST'])
@@ -54,10 +54,10 @@ def message():
         sendm = open("globalchat.txt", "a")
         sendm.write("<" + username + ">:" + message + "\n") 
     return open("chat.html", "rb")
-@app.route('/index.css', methods=['GET'])
+@app.route('/index.css/', methods=['GET'])
 def css():
     return send_file("index.css")
-@app.route('/api/clear_chat', methods=['GET'])
+@app.route('/api/clear_chat/', methods=['GET'])
 def clear_chat_api():
     api_key = request.args.get("api-key")
     if api_key == None:
@@ -67,7 +67,7 @@ def clear_chat_api():
         return {"response" : "chat cleared"}
     else:
         return {"response" : "Invalid api key"}, 403 
-@app.route('/api/send_msg', methods=['POST', 'GET'])
+@app.route('/api/send_msg/', methods=['POST', 'GET'])
 def send_msg():
     if request.method == 'POST':
         rawdata = request.get_json()
@@ -80,7 +80,7 @@ def send_msg():
         return {"response" : "message sent"}
     else:
         return 'invalid method', 400
-@app.route('/api/get_msgs', methods=["GET"])
+@app.route('/api/get_msgs/', methods=["GET"])
 def get_msgs():
     return send_file("globalchat.txt")
     
